@@ -1,16 +1,30 @@
-let officers = []
+import { getOfficers, useOfficers } from "./OfficerProvider.js"
+import { Officer } from "./Officer.js"
 
-export const useOfficers = () => {
-    return officers.slice()
-}
+const officersContainer = document.querySelector(".officersContainer")
 
-export const getOfficers = () => {
-    return fetch("https://criminals.glassdale.us/officers")
-        .then(response => response.json())
-        .then(
-            parsedOfficers => {
-                console.table(parsedOfficers)
-                officers = parsedOfficers
-            }
-        )
+export const OfficerList = () => {
+
+  getOfficers()
+    .then(() => {
+      const officerArray = useOfficers()
+      // debugger
+      /*
+            Now that you have the data, what
+            component should be rendered?
+        */
+
+      let officersHTMLRepresentations = ""
+
+      for (const officer of officerArray) {
+        officersHTMLRepresentations += Officer(officer)
+        // debugger
+      }
+      
+      officersContainer.innerHTML = `
+        <h3>Glassdale Officers</h3>
+        <section class="officersList">
+        ${officersHTMLRepresentations}
+        </section>`
+    })
 }

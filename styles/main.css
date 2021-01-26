@@ -12,9 +12,9 @@
 }
 
 .criminalCard {
-  border: 1px dotted red;
+  border: 1px solid red;
 }
 
 .officer {
-  border: 1px dotted blue;
+  border: 1px solid blue;
 }

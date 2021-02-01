@@ -1,13 +1,25 @@
+import { useConvictions, getConvictions } from "./ConvictionProvider.js"
   
 /*
  *   ConvictionSelect component that renders a select HTML element
  *   which lists all convictions in the Glassdale PD API
  */
-import { useConvictions, getConvictions } from "./ConvictionProvider.js"
 
-// Get a reference to the DOM element where the <select> will be rendered
+// Get a reference to the DOM element where the <select> will be render
+const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".filters__crime")
 
+eventHub.addEventListener("change", event =>{
+  if (event.target.id === "crimeSelect") {
+    const customEvent = new CustomEvent("crimeChosen", {
+      detail: {
+        crimeThatWasChosen: event.target.value
+      }
+    })
+    eventHub.dispatchEvent(customEvent)
+  }
+
+})
 export const ConvictionSelect = () => {
   // Trigger fetching the API data and loading it into application state
   getConvictions()
@@ -35,7 +47,7 @@ const render = convictionsCollection => {
             
             }).join("")
         }
-        
+        
         </select>
     `
 }

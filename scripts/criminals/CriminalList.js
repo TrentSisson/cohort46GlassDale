@@ -25,6 +25,20 @@ eventHub.addEventListener("crimeChosen",event => {
   }
 })
 
+eventHub.addEventListener("officerSelected", event => {
+  const officerName = event.detail.officer
+
+  const criminals = useCriminals()
+  const arrestedBy = criminals.filter(
+      criminalObject => {
+          if (criminalObject.arrestingOfficer === officerName) {
+              console.log(officerName)
+              return true
+          }
+      })
+      render(arrestedBy)
+})
+
 const render = criminalCollection => {
 
   criminalsContainer.innerHTML = criminalCollection.map(criminal => Criminal(criminal)).join("")

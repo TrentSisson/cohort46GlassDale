@@ -1,9 +1,13 @@
 {
-    "notes":[
-        {
-            "text":"",
-            "date":"",
-            "suspect":""
-        }
-    ]
+  "notes": [
+    {
+      "text": "test",
+      "criminalId": 9,
+      "date": "2021-02-11T15:24",
+      "author": "test",
+      "intuition": "test",
+      "id": 2
+    }
+   
+  ]
 }
